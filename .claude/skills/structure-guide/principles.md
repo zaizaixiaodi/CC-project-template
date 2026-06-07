@@ -6,9 +6,11 @@
 |---|------|------|
 | **Fact 事实层** | `CLAUDE.md` + `rules/` | 项目约定、禁止事项、风格要求 |
 | **Procedure 流程层** | `skills/` | 多步骤工作流、SOP |
-| **Learning 记忆层** | `memory/`（自动） | Claude 自动积累的经验 |
+| **Learning 记忆层** | Harness 自动记忆 `~/.claude/.../memory/` | Claude 自动积累的个人经验（按人、不提交 git、不随项目共享） |
 
 **禁止跨层污染**：把流程塞进 CLAUDE.md、把事实写进 skill，都是高频错误。
+
+**记忆层 ≠ 团队知识库**：记忆层是 per-user、自动维护、不进 repo 的。需团队共享的持久知识不要往这里塞——规范型进 Fact 层（CLAUDE.md/rules），项目专属的描述型知识进 `docs/`（CLAUDE.md 留指针）。
 
 ---
 
