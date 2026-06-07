@@ -7,4 +7,4 @@
 
 ## 多轮开发
 
-跨 session 的任务：会话开始先读 `PROGRESS.md` 接上进度，结束前按 `session-handoff` skill 更新（当下态覆盖、稳定决策迁出）。一轮收尾用 `done` skill（更新进度 + 提交推送）。
+跨 session 的任务：会话开始先读 `HANDOFF.md` 接上进度，结束前按 `handoff` skill 更新（当下态覆盖、稳定决策迁出）。一轮收尾用 `done` skill（更新进度 + 提交推送）。

@@ -1,17 +1,17 @@
 ---
-name: session-handoff
-description: 维护 PROGRESS.md 接力文档的纪律，让跨 session 的多轮开发能稳定接上进度而不膨胀。适用于：任务无法在单次会话完成、下次需要接续时——会话开始读取、会话结束更新。不适用于：单次会话即可完成的任务，或编写业务代码本身。
+name: handoff
+description: 维护 HANDOFF.md 接力文档的纪律，让跨 session 的多轮开发能稳定接上进度而不膨胀。适用于：任务无法在单次会话完成、下次需要接续时——会话开始读取、会话结束更新。不适用于：单次会话即可完成的任务，或编写业务代码本身。
 disable-model-invocation: false
 ---
 
-# session-handoff
+# handoff
 
-PROGRESS.md 是**会自我冲刷的瘦缓冲区**，不是账本。核心：当下态覆盖，沉淀物流出。
+HANDOFF.md 是**会自我冲刷的瘦缓冲区**，不是账本。核心：当下态覆盖，沉淀物流出。
 
 ## 会话开始
 
-1. 读根目录 `PROGRESS.md`，从"当前 (Now)"接上进度。
-2. 不存在则从 `templates/PROGRESS.md` 复制一份到根目录。
+1. 读根目录 `HANDOFF.md`，从"当前 (Now)"接上进度。
+2. 不存在则从 `templates/HANDOFF.md` 复制一份到根目录。
 
 ## 会话结束（更新纪律）
 
@@ -24,7 +24,7 @@ PROGRESS.md 是**会自我冲刷的瘦缓冲区**，不是账本。核心：当�
 
 ## 冲刷规则（对抗膨胀的关键）
 
-沉淀物**不要沉在 PROGRESS.md**，一旦稳定就流向已有三层，并从 PROGRESS.md 删除：
+沉淀物**不要沉在 HANDOFF.md**，一旦稳定就流向已有三层，并从 HANDOFF.md 删除：
 
 | 沉淀物稳定后（按性质分流） | 迁往 |
 |---|---|
@@ -34,6 +34,6 @@ PROGRESS.md 是**会自我冲刷的瘦缓冲区**，不是账本。核心：当�
 
 ## 硬约束
 
-- PROGRESS.md **≤ 80 行**，超了立即冲刷。
+- HANDOFF.md **≤ 80 行**，超了立即冲刷。
 - 禁止 session 流水账（"Session 1 做了…，Session 2 做了…"）——这是 #1 膨胀源。
 - 它是 handoff 为主、沉淀为辅；沉淀物该不断按性质流出归位，而非堆积。

@@ -1,6 +1,6 @@
-# PROGRESS
+# HANDOFF
 
-> 接力文档。会话开始先读本文件；结束前按 `session-handoff` skill 更新。≤80 行，禁流水账。
+> 接力文档。会话开始先读本文件；结束前按 `handoff` skill 更新。≤80 行，禁流水账。
 
 ## 🎯 当前 (Now)
 目标：<这一阶段要达成什么>
