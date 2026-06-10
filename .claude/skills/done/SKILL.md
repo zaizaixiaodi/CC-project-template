@@ -9,6 +9,10 @@ argument-hint: <提交信息，可选；缺省则据本轮改动自拟>
 
 一轮工作收尾：先固化进度，再推送。两步都引用现有 skill，不重复其细节。
 
+## 第零步：检查 PLAN.md（如存在）
+
+根目录有 `PLAN.md` 且验收标准已全部达成 → 按 `plan` skill 的"完成归档"流程处理（迁出沉淀、移入 `archive/plans/`）；未达成则跳过，进度勾留在 PLAN.md 里。
+
 ## 第一步：更新 HANDOFF.md
 
 按 `handoff` 的"会话结束"纪律更新根目录 `HANDOFF.md`：
