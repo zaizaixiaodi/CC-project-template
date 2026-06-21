@@ -10,7 +10,10 @@ cd /path/to/new-project
 claude
 ```
 
-之后在 CLAUDE.md 顶部按需补充项目定位、禁止事项、工作风格等（可让 Claude 触发 structure-guide 的 `guides/claude-md.md` 看模板）。
+### 首次开第一次会话，交代这几件事
+
+- **往 CLAUDE.md 顶部补**：项目定位、禁止事项、工作风格（可让 Claude 触发 structure-guide 的 `guides/claude-md.md` 看模板）。
+- **要推送 GitHub 时**：把仓库名告诉 AI（或直接 `/git-push <仓库名>`）。账号默认 `zaizaixiaodi`，PAT 在 Wolai 笔记里取——AI 会按 `git-push` skill 现问现配，不用预填。
 
 ## 多轮开发（跨 session 接力）
 
