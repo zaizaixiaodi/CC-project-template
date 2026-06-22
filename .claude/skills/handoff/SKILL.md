@@ -38,5 +38,5 @@ HANDOFF.md 是**会自我冲刷的瘦缓冲区**，不是账本。核心：当�
 ## 硬约束
 
 - HANDOFF.md **≤ 80 行**，超了立即冲刷。
-- 禁止 session 流水账（"Session 1 做了…，Session 2 做了…"）——这是 #1 膨胀源。需要追溯历史就写 `工作日志/`（见 `worklog` skill），别堆进 HANDOFF.md。
+- 禁止 session 流水账（"Session 1 做了…，Session 2 做了…"）——这是 #1 膨胀源。需要追溯历史就写 `devlog/`（见 `devlog` skill），别堆进 HANDOFF.md。
 - 它是 handoff 为主、沉淀为辅；沉淀物该不断按性质流出归位，而非堆积。
