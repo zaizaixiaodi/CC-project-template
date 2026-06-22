@@ -1,6 +1,6 @@
 ---
 name: done
-description: 一轮工作的手动收尾，组合 handoff（更新 HANDOFF.md）与 git 提交推送两步。适用于：完成一轮（或一个 session）开发后，手动归档进度并推送。不适用于：开发中途、单步小改动、或仅想更新进度不推送的场景。
+description: 一轮工作的手动收尾，组合 handoff（更新 HANDOFF.md）、worklog（写当天工作日志）与 git 提交推送三步。适用于：完成一轮（或一个 session）开发后，手动归档进度并推送。不适用于：开发中途、单步小改动、或仅想更新进度不推送的场景。
 disable-model-invocation: true
 argument-hint: <提交信息，可选；缺省则据本轮改动自拟>
 ---
@@ -21,9 +21,13 @@ argument-hint: <提交信息，可选；缺省则据本轮改动自拟>
 - 勾掉完成的计划项；稳定的决策迁出到 `CLAUDE.md`/`rules` 并从 HANDOFF.md 删除。
 - 守住 ≤80 行、禁流水账。
 
-## 第二步：提交并推送
+## 第二步：写当天工作日志
 
-1. 自拟或采用 `$ARGUMENTS` 作为提交信息（一句话概括本轮改动，含 HANDOFF.md 更新）。
+按 `worklog` skill 把本轮追加进 `工作日志/<YYYY-MM-DD>.md`（同日已有则追加，不新开文件）：做了什么、关键决策、踩坑、下一步。**只记 git 记不下的**，不逐文件列改动。
+
+## 第三步：提交并推送
+
+1. 自拟或采用 `$ARGUMENTS` 作为提交信息（一句话概括本轮改动，含 HANDOFF.md 与当天工作日志的更新）。
 2. 已配置 remote 的仓库——常规推送：
    ```
    git add .
