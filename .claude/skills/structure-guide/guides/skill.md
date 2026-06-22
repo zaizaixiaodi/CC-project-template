@@ -40,13 +40,16 @@ SKILL.md 是入口，保持精简。详细规则、参考、模板拆到附件�
 完整字段表见 [reference.md](reference.md)
 ```
 
-附件可选结构：
+附件可选结构（对齐官方 Agent Skills 约定）：
 ```
 .claude/skills/<skill-name>/
 ├── SKILL.md           ← 主入口，必需
-├── reference.md       ← 可选：详细说明，按需加载
-└── templates/         ← 可选：模板和示例
+├── scripts/           ← 可选：确定性操作的可执行代码（抽 PDF、填 docx 等），由 SKILL.md 调用而非贴进正文
+├── references/        ← 可选：按需加载的参考文档/schema/示例（内容多时用文件夹；单文件可叫 reference.md）
+└── assets/            ← 可选：会拷进产出物的文件（模板、图标、字体）
 ```
+
+> 命名说明：本仓库现有 skill 用 `templates/` 装模板，等价于官方 `assets/` 的模板子集——沿用即可，不必改名。新写涉及"代码"的 skill 时记得用 `scripts/`：能用脚本确定性完成的（格式转换、批量替换），别让模型每次现推，省上下文也更可靠。
 
 ---
 
@@ -99,7 +102,19 @@ argument-hint: <参数说明（无参数则删除此行）>
 
 ## 完成后自检
 
-- [ ] frontmatter 的 `description` 三要素齐全
+先过这组**格式硬规则**（取自官方 skill-creator 的 `quick_validate.py`，本质一致，是机器可校验的）：
+
+- [ ] 目录下有 `SKILL.md`，且以 `---` YAML frontmatter 开头
+- [ ] frontmatter 含 `name` 与 `description` 两个必填项
+- [ ] `name` 是 kebab-case（小写字母/数字/连字符）、≤64 字符、不以连字符开头结尾、无连续连字符
+- [ ] `description` 不含尖括号 `<` `>`、≤1024 字符
+- [ ] description 三要素齐全（做什么 / 何时用 / 何时不用）
+
+再过本仓库的 skill 专属项：
+
 - [ ] 高风险操作设了 `disable-model-invocation: true`
 - [ ] 接受参数的写了 `argument-hint`，正文用 `$ARGUMENTS`/`$1`
+- [ ] 代码逻辑放进了 `scripts/`，没贴进 SKILL.md 正文
 - [ ] 结构/行数等通用硬约束已对照 `principles.md`
+
+> 注意：官方校验器只认 `name`/`description`/`license`/`allowed-tools`/`metadata`/`compatibility` 六个键，会把 Claude Code 专属的 `disable-model-invocation`/`argument-hint`/`user-invocable` 判为"非法键"。这几个在 Claude Code 里是合法的——**别据此删它们**，也别直接拿官方脚本验本仓库的 skill。
