@@ -1,5 +1,6 @@
 """Validate repository manifests, links and context budgets (Python 3.11+)."""
 from pathlib import Path
+import json
 import re
 import tomllib
 import yaml
@@ -9,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 def validate():
     names = set()
     skills = sorted((ROOT / '.agents/skills').glob('*/SKILL.md'))
-    expected = {'plan', 'handoff', 'devlog', 'done', 'git-push', 'structure-guide', 'find-skills', 'ui-ux-pro-max'}
+    expected = {'plan', 'handoff', 'devlog', 'done', 'git-push', 'structure-guide', 'find-skills', 'ui-ux-pro-max', 'think', 'grill-me', 'grill-with-docs', 'implement', 'ponytail', 'grilling', 'domain-modeling', 'tdd', 'code-review', 'codebase-design'}
     assert {p.parent.name for p in skills} == expected, 'Missing or unexpected project skills'
     for p in skills:
         text = p.read_text(encoding='utf-8')
@@ -22,15 +23,20 @@ def validate():
         assert 'disable-model-invocation' not in meta and 'argument-hint' not in meta
         ui = p.parent / 'agents/openai.yaml'
         if ui.exists():
-            policy = yaml.safe_load(ui.read_text(encoding='utf-8'))['policy']
-            assert isinstance(policy['allow_implicit_invocation'], bool)
+            policy = yaml.safe_load(ui.read_text(encoding='utf-8')).get('policy', {})
+            if 'allow_implicit_invocation' in policy:
+                assert isinstance(policy['allow_implicit_invocation'], bool)
     for p in (ROOT / '.agents/skills').rglob('*.md'):
         text = p.read_text(encoding='utf-8')
         assert '.claude/' not in text and 'CLAUDE.md' not in text, p
         assert 'archive$plans' not in text and 'templates$' not in text, p
-        for link in re.findall(r'\]\(([^)]+)\)', text):
+        without_examples = re.sub(r'```[^\n]*\n.*?```', '', text, flags=re.S)
+        for link in re.findall(r'\]\(([^)]+)\)', without_examples):
             if '://' not in link and not link.startswith('#'):
                 assert (p.parent / link.split('#')[0]).exists(), (p, link)
+    dependencies = json.loads((ROOT / 'skills-dependencies.json').read_text(encoding='utf-8'))
+    for parent, children in dependencies.items():
+        assert parent in names and set(children).issubset(names), (parent, children)
     config = tomllib.loads((ROOT / '.codex/config.toml').read_text(encoding='utf-8'))
     assert config['agents']['enabled'] is True
     assert config['mcp_servers']['firecrawl']['url'] == 'https://mcp.firecrawl.dev/v2/mcp-oauth'

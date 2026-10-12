@@ -4,8 +4,8 @@
 
 ## 🎯 当前 (Now)
 目标：保存 Codex 脚手架最新版，包含 MCP 与新增技能。
-在途：Firecrawl OAuth、Context7 及两个新增技能已安装实测；用户要求推送到原 GitHub 仓库。
-下一步：确认远端最新提交；新机器按 README 安装并自行完成 Firecrawl OAuth。
+在途：MCP 与新增技能已安装，基本行为验证完成；仅保存本项目仓库，不推送外层 workspace。
+下一步：新会话按 README 调用技能；新机器自行完成 Firecrawl OAuth。
 
 ## 📋 计划 (Plan)
 <!-- 存在 PLAN.md 时本段只留一行指针：见 PLAN.md（当前在第 N 步） -->
@@ -13,6 +13,7 @@
 - [x] 新增 2 个 TOML 角色及验证用例。
 - [x] Firecrawl / Context7 真实 MCP 调用通过。
 - [x] find-skills / UI UX Pro Max 安装测试通过，内置 skill-creator 跳过。
+- [x] think、grill-me、grill-with-docs、implement、ponytail 及必要依赖安装并基本验证。
 - [ ] 完成本机策略阻挡的原生角色加载验收（见 tests/cli-results.md）。
 
 ## ⚖️ 在途决策 (Decisions)

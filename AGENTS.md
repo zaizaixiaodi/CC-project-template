@@ -31,3 +31,6 @@
 - 库和框架 API 的版本相关问题使用 Context7：先 resolve-library-id，再 query-docs，核对实际版本。
 - 查找可安装技能用 find-skills；UI/UX 请求用 ui-ux-pro-max；创建技能用 Codex 内置 skill-creator。
 - MCP 安装与实测记录见 tests/integration-results.md。
+- 方案判断用 think；显式访谈用 grill-me / grill-with-docs，后者按已确认术语和决策更新 CONTEXT.md 与 ADR。
+- 已确认计划用 implement；清理过度设计用 ponytail。既有授权和已确认测试接口无需重复确认。
+- 支持技能通过相邻 SKILL.md 链接读取；依赖图见 skills-dependencies.json，新增行为验收见 tests/planning-skills-results.md。

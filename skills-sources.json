@@ -16,5 +16,65 @@
   "skill-creator": {
     "source": "Codex bundled system skill",
     "action": "not reinstalled"
+  },
+  "think": {
+    "repository": "https://github.com/tw93/Waza",
+    "upstream_commit": "a6d28b0e18f6c199c45d9b8d9e6012c040c22161",
+    "license": "MIT",
+    "adaptation": "Codex file loading, invocation policy, authorization boundaries; dependency links explicit. Domain docs default CONTEXT.md with existing glossary preserved."
+  },
+  "grill-me": {
+    "repository": "https://github.com/mattpocock/skills",
+    "upstream_commit": "49dd158d1076134a641b33efb035946536778336",
+    "license": "MIT",
+    "adaptation": "Codex file loading, invocation policy, authorization boundaries; dependency links explicit. Domain docs default CONTEXT.md with existing glossary preserved."
+  },
+  "grilling": {
+    "repository": "https://github.com/mattpocock/skills",
+    "upstream_commit": "49dd158d1076134a641b33efb035946536778336",
+    "license": "MIT",
+    "adaptation": "Codex file loading, invocation policy, authorization boundaries; dependency links explicit. Domain docs default CONTEXT.md with existing glossary preserved."
+  },
+  "grill-with-docs": {
+    "repository": "https://github.com/mattpocock/skills",
+    "upstream_commit": "49dd158d1076134a641b33efb035946536778336",
+    "license": "MIT",
+    "adaptation": "Codex file loading, invocation policy, authorization boundaries; dependency links explicit. Domain docs default CONTEXT.md with existing glossary preserved."
+  },
+  "domain-modeling": {
+    "repository": "https://github.com/mattpocock/skills",
+    "upstream_commit": "49dd158d1076134a641b33efb035946536778336",
+    "license": "MIT",
+    "adaptation": "Codex file loading, invocation policy, authorization boundaries; dependency links explicit. Domain docs default CONTEXT.md with existing glossary preserved."
+  },
+  "implement": {
+    "repository": "https://github.com/mattpocock/skills",
+    "upstream_commit": "49dd158d1076134a641b33efb035946536778336",
+    "license": "MIT",
+    "adaptation": "Codex file loading, invocation policy, authorization boundaries; dependency links explicit. Domain docs default CONTEXT.md with existing glossary preserved."
+  },
+  "tdd": {
+    "repository": "https://github.com/mattpocock/skills",
+    "upstream_commit": "49dd158d1076134a641b33efb035946536778336",
+    "license": "MIT",
+    "adaptation": "Codex file loading, invocation policy, authorization boundaries; dependency links explicit. Domain docs default CONTEXT.md with existing glossary preserved."
+  },
+  "code-review": {
+    "repository": "https://github.com/mattpocock/skills",
+    "upstream_commit": "49dd158d1076134a641b33efb035946536778336",
+    "license": "MIT",
+    "adaptation": "Codex file loading, invocation policy, authorization boundaries; dependency links explicit. Domain docs default CONTEXT.md with existing glossary preserved."
+  },
+  "codebase-design": {
+    "repository": "https://github.com/mattpocock/skills",
+    "upstream_commit": "49dd158d1076134a641b33efb035946536778336",
+    "license": "MIT",
+    "adaptation": "Codex file loading, invocation policy, authorization boundaries; dependency links explicit. Domain docs default CONTEXT.md with existing glossary preserved."
+  },
+  "ponytail": {
+    "repository": "https://github.com/DietrichGebert/ponytail",
+    "upstream_commit": "9b58c1ffb790c075ca32e70a89cf1d80588f4abf",
+    "license": "MIT",
+    "adaptation": "Codex file loading, invocation policy, authorization boundaries; dependency links explicit. Domain docs default CONTEXT.md with existing glossary preserved."
   }
 }

@@ -1,11 +1,11 @@
-"""Install the two requested skills without overwriting existing user skills."""
+"""Install requested Codex skills and their required dependencies without overwrites."""
 from pathlib import Path
 import argparse
 import hashlib
 import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
-NAMES = ('find-skills', 'ui-ux-pro-max')
+NAMES = ('find-skills', 'ui-ux-pro-max', 'think', 'grill-me', 'grill-with-docs', 'implement', 'ponytail', 'grilling', 'domain-modeling', 'tdd', 'code-review', 'codebase-design')
 
 def files(path):
     return {str(p.relative_to(path)): hashlib.sha256(p.read_bytes()).hexdigest()

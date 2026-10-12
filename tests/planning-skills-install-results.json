@@ -1,0 +1,42 @@
+{
+  "think": {
+    "files": 5,
+    "installed_matches_project": true
+  },
+  "grill-me": {
+    "files": 3,
+    "installed_matches_project": true
+  },
+  "grill-with-docs": {
+    "files": 3,
+    "installed_matches_project": true
+  },
+  "implement": {
+    "files": 3,
+    "installed_matches_project": true
+  },
+  "ponytail": {
+    "files": 2,
+    "installed_matches_project": true
+  },
+  "grilling": {
+    "files": 3,
+    "installed_matches_project": true
+  },
+  "domain-modeling": {
+    "files": 5,
+    "installed_matches_project": true
+  },
+  "tdd": {
+    "files": 5,
+    "installed_matches_project": true
+  },
+  "code-review": {
+    "files": 3,
+    "installed_matches_project": true
+  },
+  "codebase-design": {
+    "files": 5,
+    "installed_matches_project": true
+  }
+}

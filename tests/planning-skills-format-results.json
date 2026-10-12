@@ -1,0 +1,42 @@
+{
+  "think": {
+    "exit_code": 0,
+    "message": "Skill is valid!"
+  },
+  "grill-me": {
+    "exit_code": 0,
+    "message": "Skill is valid!"
+  },
+  "grill-with-docs": {
+    "exit_code": 0,
+    "message": "Skill is valid!"
+  },
+  "implement": {
+    "exit_code": 0,
+    "message": "Skill is valid!"
+  },
+  "ponytail": {
+    "exit_code": 0,
+    "message": "Skill is valid!"
+  },
+  "grilling": {
+    "exit_code": 0,
+    "message": "Skill is valid!"
+  },
+  "domain-modeling": {
+    "exit_code": 0,
+    "message": "Skill is valid!"
+  },
+  "tdd": {
+    "exit_code": 0,
+    "message": "Skill is valid!"
+  },
+  "code-review": {
+    "exit_code": 0,
+    "message": "Skill is valid!"
+  },
+  "codebase-design": {
+    "exit_code": 0,
+    "message": "Skill is valid!"
+  }
+}

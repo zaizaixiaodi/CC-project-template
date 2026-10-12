@@ -60,6 +60,25 @@ Context7 已实际通过库检索与文档查询。可用 `$find-skills` 搜索�
 UI UX Pro Max 的脚本、数据、许可证来自官方仓库，入口已去除 Claude 插件路径依赖。完整原工作流迁入 references/workflow.md，脚本按技能实际路径调用。
 安装脚本不会覆盖已有不同版本；需要升级时先比较本地内容。
 
+## 方案对齐与实现技能
+
+| 调用 | 使用时机 |
+|---|---|
+| `$think` | tw93 的方案判断与头脑风暴，先对齐方向和可验证计划 |
+| `$grill-me` | 连续追问，把目标、边界与取舍问清楚，不写项目文档 |
+| `$grill-with-docs` | 带项目资料的追问，已确认术语沉淀到 CONTEXT.md，关键取舍形成 ADR |
+| `$implement` | 实现已确认计划或 Issue，按公开接口测试并审查；提交需授权 |
+| `$ponytail` | 清理过度设计，保留任务要求、边界验证与错误处理 |
+
+典型顺序：`$think` 判断方向 → `$grill-with-docs` 澄清并记录 → `$implement` 执行 → `$ponytail` 检查多余复杂度。可按实际需求跳过已完成的阶段。
+grill-me、grill-with-docs、implement 保留上游的仅显式调用策略；不会自动触发访谈或实现。
+
+必要依赖已一并安装：grilling、domain-modeling、tdd、code-review、codebase-design。它们通过实际文件链接加载，不依赖 Claude 的 Skill tool。
+本模板默认用 CONTEXT.md 存词汇；已有 GLOSSARY.md 的项目沿用原文件，避免两份词汇库。CONTEXT.md 不承担计划或日志职责，PLAN/HANDOFF 分工保留。
+ADR 仅用于难以反悔、缺乏背景难理解、且存在真实取舍的决策；未确认选择不写成定论。
+
+新一批行为验收见 [tests/planning-skills-results.md](tests/planning-skills-results.md)，来源提交与适配说明见 skills-sources.json。
+
 验证记录见 [tests/integration-results.md](tests/integration-results.md)。MCP 直接测试：`python scripts/test_mcp.py context7 --live`；该脚本不读取 Codex OAuth 凭据，不能验证 OAuth 抓取。
 
 官方依据：[Skills](https://learn.chatgpt.com/docs/build-skills)、[Subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents)。

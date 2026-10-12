@@ -1,0 +1,6 @@
+{
+  "grill-me": ["grilling"],
+  "grill-with-docs": ["grilling", "domain-modeling"],
+  "implement": ["tdd", "code-review"],
+  "tdd": ["codebase-design"]
+}
