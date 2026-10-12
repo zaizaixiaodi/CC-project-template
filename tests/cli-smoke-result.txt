@@ -1,0 +1,8 @@
+本次测试未完成，真实结果如下：
+
+- 当前会话可发现的项目 skills 只有四个：`devlog`、`handoff`、`plan`、`structure-guide`。其余两项及 explicit-only 配置无法核实，不能编造六项名单。
+- 已实际调用 `spawn_agent`，设置 `fork_turns: "none"`，返回 `/root/workflow_reviewer`。
+- 委派接口没有自定义角色选择参数；角色配置读取失败，因此**未成功加载 `workflow-reviewer` 自定义角色，也未完成文件审查**。
+- 主代理两次读取命令及子代理读取尝试均返回 `rejected: blocked by policy`。
+
+未修改文件，未提交或推送。

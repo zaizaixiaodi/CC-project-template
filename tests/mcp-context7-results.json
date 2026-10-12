@@ -1,0 +1,25 @@
+{
+  "context7": {
+    "endpoint": "https://mcp.context7.com/mcp",
+    "server": {
+      "name": "Context7",
+      "version": "4.3.0",
+      "websiteUrl": "https://context7.com",
+      "description": "Context7 provides up-to-date documentation and code examples for libraries and frameworks.",
+      "icons": [
+        {
+          "src": "https://context7.com/context7-icon-green.png",
+          "mimeType": "image/png"
+        }
+      ]
+    },
+    "tools": [
+      "resolve-library-id",
+      "query-docs"
+    ],
+    "handshake": "PASS",
+    "resolve_library": "PASS",
+    "query_docs": "PASS",
+    "content_chars": 3766
+  }
+}

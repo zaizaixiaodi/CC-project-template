@@ -1,0 +1,20 @@
+{
+  "installed_on": "2026-10-12",
+  "find-skills": {
+    "repository": "https://github.com/vercel-labs/skills",
+    "upstream_head_at_install": "13e4063a1cf913f5606d57d42ab83a86f5001e04",
+    "path": "skills/find-skills",
+    "license": "MIT"
+  },
+  "ui-ux-pro-max": {
+    "repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+    "upstream_commit": "026b6e172c47fa09246b89b6e1d414b8e15f1057",
+    "path": ".claude/skills/ui-ux-pro-max",
+    "license": "MIT",
+    "adaptation": "Codex-neutral entry point; detailed workflow moved to references/workflow.md"
+  },
+  "skill-creator": {
+    "source": "Codex bundled system skill",
+    "action": "not reinstalled"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "design_system": {
+    "exit_code": 0,
+    "status": "PASS",
+    "output_chars": 6072
+  },
+  "ux_search": {
+    "exit_code": 0,
+    "status": "PASS",
+    "output_chars": 1772
+  },
+  "stack_search": {
+    "exit_code": 0,
+    "status": "PASS",
+    "output_chars": 1662
+  }
+}

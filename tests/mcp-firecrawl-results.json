@@ -1,0 +1,17 @@
+{
+  "firecrawl": {
+    "endpoint": "https://mcp.firecrawl.dev/v2/mcp",
+    "server": {
+      "name": "firecrawl-fastmcp",
+      "version": "3.29.1"
+    },
+    "tools": [
+      "firecrawl_scrape",
+      "firecrawl_search",
+      "firecrawl_parse"
+    ],
+    "handshake": "PASS",
+    "scrape": "FAIL",
+    "content_chars": 823
+  }
+}

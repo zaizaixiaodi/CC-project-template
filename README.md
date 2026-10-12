@@ -1,130 +1,65 @@
-# Claude Code 工作流脚手架
+# Codex 工作流脚手架
 
-> 一套**为「持续作战」设计**的 Claude Code 项目骨架。
-> 让 AI 跨越多次会话仍记得目标、接得上进度、查得到历史——而且**永不膨胀**。
+Claude 版迁移为 Codex 项目模板，保留计划、接力、按天日志三层状态。
 
-普通的 CLAUDE.md 只解决"这次对话怎么干"。可真正的工作——搭一个投标文件自动化流程、做一轮完整的合同审核体系、写一份要反复打磨的研究报告——**从来不是一次对话能完成的**。一旦换了会话，AI 就失忆：忘了上次做到哪、为什么那样决策、踩过哪些坑。
+## 使用
 
-这套脚手架就是来终结"AI 失忆症"的。开箱即用，**无需写一行代码**。
+在 Codex 桌面端把本目录作为项目打开，新建项目内会话；或进入本目录运行 `codex`。按客户端提示信任项目，以加载项目配置。
+本仓库保存项目级配置与技能源码；个人 OAuth 凭据由 Codex 单独保管，不随 Git 同步。
+开新项目时复制工作文件，排除 `.git`、`tests/.tmp` 和历史开发日志，保留原模板。
 
----
+| 路径 | 用途 |
+|---|---|
+| AGENTS.md | 项目约定和上下文路由 |
+| .agents/skills/ | 六个技能，显式调用 `$skill-name` |
+| .codex/agents/*.toml | workflow-reviewer 和 workflow-tester 子代理 |
+| .codex/config.toml | 启用子代理，最多三个并发子代理 |
+| PLAN.md | 任务目标与验收，完成后归档 |
+| HANDOFF.md | 当前状态与下一步，覆盖更新 |
+| devlog/YYYY-MM-DD.md | 按天追加的历史，按需读取 |
 
-## ✨ 它凭什么不一样：把上下文当稀缺资源
+| 调用 | 功能 |
+|---|---|
+| `$plan 整理会议材料` | 创建或更新任务协议 |
+| `$handoff` | 更新接力 |
+| `$devlog 2026-10-12` | 查看指定日期，或按请求记录日志 |
+| `$done` | 归档已验收计划、更新接力、追加日志 |
+| `$git-push` | 按明确授权提交或推送 |
+| `$structure-guide` | 导航 Codex 配置维护 |
 
-市面上的"AI 工作流模板"通病是**越用越肥**——把所有东西塞进一个文件，AI 每次都要读一大堆，又慢又容易抓错重点。
+done 和 git-push 仅显式调用。普通收尾不会自动提交或推送。
+不固定账号、模型、代理或分支，不保存凭据；项目设置不改用户全局配置。
 
-这套脚手架的核心信仰只有一句:**上下文是稀缺资源，必须精打细算。** 由此衍生出贯穿全局的三条铁律:
+子代理请求示例：`请委派 workflow-reviewer 检查技能，再让 workflow-tester 在 tests/.tmp 验证接力流程。`
+子代理继承运行环境和权限；主代理负责汇总验收。
 
-- 📏 **限高**:CLAUDE.md ≤ 200 行、HANDOFF.md ≤ 80 行、每个 SKILL.md ≤ 200 行——超了立刻"冲刷"。
-- 🚿 **自我冲刷**:接力文档只留"当下态"，沉淀下来的知识自动按性质流向该去的地方，绝不堆积。
-- 🙋 **靠问不靠猜**:复杂任务先问你要不要立协议、删改东西先确认——AI 不自作主张。这对非程序员尤其救命。
+## 验证
 
-**结果**:无论项目做多久，AI 每次加载的都是"刚刚好"的精准上下文，不多不少。
+Python 3.11+ 与 PyYAML：`python scripts/validate.py`。
+行为用例见 [tests/behavioral-cases.md](tests/behavioral-cases.md)，实际行为结果见 [tests/behavior-results.md](tests/behavior-results.md)。
+结构校验、手动读取角色后的委派、客户端原生发现分别验收，不能互相替代。
 
----
+`.claude/`、CLAUDE.md 和旧参考文章保留作为历史；当前版本只适配 Codex，使用 AGENTS.md 与新目录。
 
-## 🧠 三层状态系统：跨会话作战的核心
+## MCP 与新增技能
 
-需要多次会话才能完成的任务，靠三层分工——**各答一个问题，互不重复**：
+项目 `.codex/config.toml` 已配置 Firecrawl OAuth 与 Context7。已有项目配置时先合并两个 mcp_servers 表，不覆盖其他配置。
+本机跨项目安装：
 
-| 层 | 文件 | 回答什么 | 何时读 |
-|---|---|---|---|
-| **任务协议** | `PLAN.md` | 这件事"做到什么程度才算完" | 有就读 |
-| **接力文档** | `HANDOFF.md` | "现在在哪、下一步干啥" | **每次会话开始** |
-| **开发日志** | `devlog/<日期>.md` | "一路都曾经发生了什么" | 平时不读，按天按需 |
-
-- **`PLAN.md`(任务协议)**:开工前把目标、不做什么、验收标准、验证手段写死，防止"看起来做完了"的静默失败。**创建靠问不靠猜**——你可主动 `/plan`;AI 觉得需求复杂会先问你要不要立;会话收尾还没做完会提示补建。完工后自动归档到 `archive/plans/`。
-- **`HANDOFF.md`(接力文档)**:整个系统的地基。会话一开始读它就接上进度。它是**会自我冲刷的瘦缓冲区**——当下态覆盖重写，稳定的知识流走，永远 ≤80 行、禁流水账。
-- **`devlog/`(开发日志)**:每轮收尾追加一篇当天的账,记**做了什么、关键决策、踩坑、下一步**。它只记 git 记不下的"为什么"——平时绝不占用上下文,要追溯时你说"看某天",AI 才翻那一篇。
-
-> 三者关系:**HANDOFF 是地基(跨会话就用)，PLAN 是建在其上的复杂任务协议层，devlog 最普适(每轮都写)。**
-
----
-
-## 🛠 内置技能(Skills)一览
-
-所有能力都以 Claude Code 原生 skill 形式内置，按需自动加载或手动 `/` 调用:
-
-| Skill | 作用 | 触发方式 |
-|---|---|---|
-| **structure-guide** | 项目结构的"总导航"。任何配置变更(建 skill、改 CLAUDE.md、配 rule/hook)前自动加载，按官方标准把关，防止目录瞎写、文件膨胀 | 结构变更时自动 |
-| **plan** | 创建与维护 `PLAN.md` 任务协议，完成后归档 | `/plan` 或复杂需求时 |
-| **handoff** | 维护 `HANDOFF.md` 接力纪律，保证跨会话稳定接续而不膨胀 | 会话起止自动 |
-| **devlog** | 维护按天追加的开发日志，供日后追溯 | `/done` 时写、按天读 |
-| **done** | 一键收尾:归档 PLAN → 更新 HANDOFF → 写当天日志 → 提交推送 | `/done` |
-| **git-push** | 首次/日常推送到 GitHub 的完整流程(含 token、代理绕过、冲突处理) | `/git-push <仓库名>` |
-
-**亮点**:`structure-guide` 已与 Anthropic 官方 `skill-creator` 对齐——它能按官方标准**给自己挑错**(SKILL.md 格式、命名规范、目录结构自检),等于这套脚手架自带"质检员"。
-
----
-
-## 🏛 底层架构:三层不串味
-
-| 层 | 机制 | 存什么 |
-|---|---|---|
-| **事实层** | `CLAUDE.md` + `.claude/rules/` | 项目约定、禁止事项、风格要求 |
-| **流程层** | `.claude/skills/` | 多步骤工作流、SOP |
-| **记忆层** | Harness 自动记忆 | AI 跨项目自动积累的个人经验(按人、不进 git) |
-
-脚手架最严防的就是"跨层污染"——把流程塞进 CLAUDE.md、把事实写进 skill,都是高频翻车点。`structure-guide` 会替你守住边界。
-
----
-
-## 🚀 快速开始
-
-### 在本机开新项目
-
-```bash
-cp -r project-template 我的新项目
-cd 我的新项目
-claude
+```powershell
+codex mcp add firecrawl --url https://mcp.firecrawl.dev/v2/mcp-oauth
+codex mcp login firecrawl
+codex mcp add context7 --url https://mcp.context7.com/mcp
+python scripts/install_codex_skills.py
 ```
 
-### 在另一台电脑上获取脚手架
+Firecrawl 登录需要用户在浏览器授权；本机已完成 OAuth，并实际验证抓取成功。免 Key 接口在本次测试中拒绝匿名抓取，不能作为已验证替代方案。新机器仍需自行登录。
+Context7 已实际通过库检索与文档查询。可用 `$find-skills` 搜索技能，`$ui-ux-pro-max` 获取 UI/UX 设计建议；`$skill-creator` 为 Codex 内置，无需重复安装。
+新增用户技能在下一轮对话可发现；看不到时重新打开项目会话。
 
-**方式 A — git clone(推荐，以后能拉更新)**
-```bash
-git clone https://github.com/zaizaixiaodi/CC-project-template.git
-```
-仓库若为 Private，clone 时带上 token:`https://<你的PAT>@github.com/...`。
-(新电脑没有本机代理,**别**套 `-c http.proxy=""`,直接 clone 即可。)
+UI UX Pro Max 的脚本、数据、许可证来自官方仓库，入口已去除 Claude 插件路径依赖。完整原工作流迁入 references/workflow.md，脚本按技能实际路径调用。
+安装脚本不会覆盖已有不同版本；需要升级时先比较本地内容。
 
-**方式 B — 不装 git**:GitHub 页面 → 绿色 **Code** 按钮 → **Download ZIP** → 解压。
+验证记录见 [tests/integration-results.md](tests/integration-results.md)。MCP 直接测试：`python scripts/test_mcp.py context7 --live`；该脚本不读取 Codex OAuth 凭据，不能验证 OAuth 抓取。
 
-### 拿它开你自己的项目时，清两样
-
-脚手架仓库混着"骨架本体"和"我们造它的记录"。开你自己的项目前:
-```bash
-rm -rf .git          # 去掉脚手架的 git 历史，开你自己的
-rm -f devlog/*.md    # 清掉造脚手架时的开发日志
-# 参考文章/ 想留作资料就留，不想要就删
-claude
-```
-
-### 首次会话，交代这几件事
-
-- **往 CLAUDE.md 顶部补**:项目定位、禁止事项、工作风格(可让 Claude 触发 `structure-guide` 的 `guides/claude-md.md` 看模板)。
-- **要推送 GitHub 时**:把仓库名告诉 AI(或直接 `/git-push <仓库名>`)。AI 会按 `git-push` skill 现问现配。
-
----
-
-## 👤 这套脚手架为谁而造
-
-为**所有想用 AI 把一件正经事做完、做好的人**——尤其是不写代码的专业工作者:
-
-- ⚖️ 法务:搭合同审核流程、法律检索流程
-- 📑 投标/咨询:做投标文件自动化、研究报告流水线
-- 🎨 创作:把反复打磨的 PPT、长文创作沉淀成可复用流程
-
-你只管提需求、做判断;脚手架负责让 AI **记得住、接得上、查得到、不跑偏**。用熟了之后,把稳定下来的步骤抽成你自己的专属 skill,工作流就越用越顺手。
-
----
-
-## 🔧 开发/测试 structure-guide
-
-- **日常修改**:直接在 `.claude/skills/structure-guide/` 下编辑。
-- **干净测试**:把整个脚手架复制到 metadevskill 目录外(如桌面),再进去启动 Claude,避免父目录的 init-project-context skill 干扰。
-
----
-
-> 想了解它的演进路线(比如做成可一键分发的 Claude Code 插件),见 `参考文章/把脚手架改造成-Claude-Code-插件-设计方案.md`。
+官方依据：[Skills](https://learn.chatgpt.com/docs/build-skills)、[Subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents)。

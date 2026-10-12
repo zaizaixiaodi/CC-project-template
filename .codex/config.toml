@@ -1,0 +1,13 @@
+[agents]
+enabled = true
+max_concurrent_threads_per_session = 3
+
+[mcp_servers.firecrawl]
+url = "https://mcp.firecrawl.dev/v2/mcp-oauth"
+startup_timeout_sec = 30
+tool_timeout_sec = 90
+
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+startup_timeout_sec = 30
+tool_timeout_sec = 90
